@@ -1,10 +1,27 @@
-package com.example.dom.service.Impl;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
+package com.example.demo.service.impl;
+
+import com.example.demo.entity.CertificateTemplate;
 import com.example.demo.service.TemplateService;
-import com.example.demo.repository.TemplateRepository;
-import com.example.demo.entity.Template;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
-public class TemplateServiceImpl implements TemplateService{
-    
+public class TemplateServiceImpl implements TemplateService {
+
+    @Override
+    public CertificateTemplate addTemplate(CertificateTemplate template) {
+        // throw "Template name exists" if duplicate
+        return template;
+    }
+
+    @Override
+    public List<CertificateTemplate> getAllTemplates() {
+        return List.of();
+    }
+
+    @Override
+    public CertificateTemplate findById(Long id) {
+        return null;
+    }
 }
