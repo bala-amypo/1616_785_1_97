@@ -1,5 +1,5 @@
 package com.example.dom.service;
-import com.example.demo.entity.Verification;
+import com.example.demo.entity.VerificationLog;
 public interface VerificationService{
     
 }
