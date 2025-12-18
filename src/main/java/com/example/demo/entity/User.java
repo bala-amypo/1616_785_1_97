@@ -39,6 +39,7 @@ public class User{
         return rollNumber;
     }
     public User(Integer id,String name,String email,String rollNumber){
+        this.id=id;
         this.username=username;
          this.email=email;
        this.rollNumber=rollNumber;
