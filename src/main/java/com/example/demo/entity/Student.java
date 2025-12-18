@@ -45,4 +45,14 @@ public class Student {
     public void setRollNumber(String rollNumber) { 
         this.rollNumber = rollNumber; 
     }
+      public Student() {
+
+    }
+
+    public Student(String name, String email, String rollNumber) {
+        this.name = name;
+        this.email = email;
+        this.rollNumber = rollNumber;
+    }
+
 }

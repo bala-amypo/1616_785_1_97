@@ -51,11 +51,12 @@ public class User{
     public User(Long id,String name,String email,String password,String role){
         this.id=id;
         this.username=username;
-         this.email=email;
-         this.password=password;
+        this.email=email;
+        this.password=password;
        this.role=role;
     }
     public User(){
-
+        this.role = Role.STAFF;
     }
+
 }
