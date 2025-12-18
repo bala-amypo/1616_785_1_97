@@ -12,8 +12,7 @@ public class User{
     private String name;
     @Column(unique=true)
     private String email;
-    @Column(unique=true)
-    private String rollNumber;
+    private String role;
     public void setId(Long id){
         this.id=id;
     }
@@ -23,7 +22,7 @@ public class User{
     public void setEmail(String email){
         this.email=email;
     }
-     public void setRollNumber(String rollNumber){
+     public void setRole(String role){
         this.rollNumber=rollNumber;
     }
     public Long getId(){
