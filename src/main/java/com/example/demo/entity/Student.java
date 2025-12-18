@@ -39,7 +39,10 @@ public class Student {
     public void setEmail(String email) { 
         this.email = email; 
     }
-
-    public String getRollNumber() { return rollNumber; }
-    public void setRollNumber(String rollNumber) { this.rollNumber = rollNumber; }
+    public String getRollNumber() { 
+        return rollNumber; 
+    }
+    public void setRollNumber(String rollNumber) { 
+        this.rollNumber = rollNumber; 
+    }
 }
