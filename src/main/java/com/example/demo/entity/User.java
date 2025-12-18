@@ -38,7 +38,7 @@ public class User{
     public String getRollNumber(){
         return rollNumber;
     }
-    public User(Integer id,String username,String email,String password,Date createdAt){
+    public User(Integer id,String username,String email,String rollNumber){
         this.username=username;
          this.email=email;
        this.rollNumber=rollNumber;
