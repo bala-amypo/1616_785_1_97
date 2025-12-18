@@ -21,7 +21,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findById(Long id) {
-        // throw "Student not found" if missing
         return null;
     }
 }
