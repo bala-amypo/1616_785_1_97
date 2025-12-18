@@ -23,7 +23,7 @@ public class User{
         this.email=email;
     }
      public void setRole(String role){
-        this.rollNumber=rollNumber;
+        this.roler=role;
     }
     public Long getId(){
         return id;
@@ -34,14 +34,14 @@ public class User{
     public String getEmail(){
         return email;
     }
-    public String getRollNumber(){
-        return rollNumber;
+    public String getRole(){
+        return role;
     }
-    public User(Long id,String name,String email,String rollNumber){
+    public User(Long id,String name,String email,String role){
         this.id=id;
         this.username=username;
          this.email=email;
-       this.rollNumber=rollNumber;
+       this.role=role;
     }
     public User(){
 
