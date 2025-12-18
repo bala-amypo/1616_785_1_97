@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.CertificateTemplate;
+import com.example.demo.exception.DuplicateResourceException;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CertificateTemplateRepository;
 import com.example.demo.service.TemplateService;
 import org.springframework.stereotype.Service;
@@ -16,18 +18,22 @@ public class TemplateServiceImpl implements TemplateService {
         this.repository = repository;
     }
 
+    @Override
     public CertificateTemplate addTemplate(CertificateTemplate template) {
         repository.findByTemplateName(template.getTemplateName()).ifPresent(t -> {
-            throw new RuntimeException("Template name exists");
+            throw new DuplicateResourceException("Template name exists");
         });
         return repository.save(template);
     }
 
+    @Override
     public List<CertificateTemplate> getAllTemplates() {
         return repository.findAll();
     }
 
+    @Override
     public CertificateTemplate findById(Long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Template not found"));
     }
 }
