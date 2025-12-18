@@ -12,6 +12,9 @@ public class User{
     private String name;
     @Column(unique=true)
     private String email;
+    @Column(nullable = false)
+    private String password;
+    
     private String role;
     public void setId(Long id){
         this.id=id;
