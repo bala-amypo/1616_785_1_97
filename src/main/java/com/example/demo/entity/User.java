@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 @Entity
-public class StudentEntity{
+public class User{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -23,35 +23,27 @@ public class StudentEntity{
     public void setEmail(String email){
         this.email=email;
     }
-     public void setPassword(String password){
-        this.password=password;
-    }
-    public void setCreatedAt(Date createdAt){
-        this.createdAt=createdAt;
+     public void setRollNumber(String rollNumber){
+        this.rollNumber=rollNumber;
     }
     public Integer getId(){
         return id;
     }
-    public String getUsername(){
-        return username;
+    public String getname(){
+        return name;
     }
     public String getEmail(){
         return email;
     }
-    public String getPassword(){
-        return password;
+    public String getRollNumber(){
+        return rollNumber;
     }
-   
-    public Date getCreatedAt(){
-        return createdAt;
-    }
-    public StudentEntity(Integer id,String username,String email,String password,Date createdAt){
+    public User(Integer id,String username,String email,String password,Date createdAt){
         this.username=username;
          this.email=email;
-       this.password=password;
-        this.createdAt=createdAt;
+       this.rollNumber=rollNumber;
     }
-    public StudentEntity(){
+    public User(){
 
     }
 }
