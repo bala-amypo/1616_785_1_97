@@ -23,6 +23,7 @@ public class VerificationServiceImpl implements VerificationService {
         this.logRepository = logRepository;
     }
 
+    @Override
     public VerificationLog verifyCertificate(String verificationCode, String clientIp) {
         VerificationLog log = new VerificationLog();
         log.setVerifiedAt(LocalDateTime.now());
@@ -40,6 +41,7 @@ public class VerificationServiceImpl implements VerificationService {
         return logRepository.save(log);
     }
 
+    @Override
     public List<VerificationLog> getLogsByCertificate(Long certificateId) {
         return logRepository.findByCertificateId(certificateId);
     }
