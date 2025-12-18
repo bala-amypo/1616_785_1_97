@@ -14,7 +14,7 @@ public class User{
     private String email;
     @Column(unique=true)
     private String rollNumber;
-    public void setId(Integer id){
+    public void setId(Long id){
         this.id=id;
     }
     public void setname(String name){
@@ -26,7 +26,7 @@ public class User{
      public void setRollNumber(String rollNumber){
         this.rollNumber=rollNumber;
     }
-    public Integer getId(){
+    public Long getId(){
         return id;
     }
     public String getname(){
@@ -38,7 +38,7 @@ public class User{
     public String getRollNumber(){
         return rollNumber;
     }
-    public User(Integer id,String name,String email,String rollNumber){
+    public User(Long id,String name,String email,String rollNumber){
         this.id=id;
         this.username=username;
          this.email=email;
