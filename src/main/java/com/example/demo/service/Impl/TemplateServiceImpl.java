@@ -11,7 +11,6 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public CertificateTemplate addTemplate(CertificateTemplate template) {
-        // throw "Template name exists" if duplicate
         return template;
     }
 
