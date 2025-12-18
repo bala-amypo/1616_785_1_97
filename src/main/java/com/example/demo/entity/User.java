@@ -2,6 +2,7 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
+import jakarta.persistence.;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 @Entity
@@ -14,7 +15,7 @@ public class User{
     private String email;
     @Column(nullable = false)
     private String password;
-
+    @Enumerated(EnumType.STRING)
     private String role;
     public void setId(Long id){
         this.id=id;
