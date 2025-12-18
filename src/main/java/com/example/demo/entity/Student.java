@@ -9,12 +9,11 @@ public class Student{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @Column(
+    @Column(unique=true)
     private String templateName;
-    @Column(unique=true)
-    private String email;
-    @Column(unique=true)
-    private String rollNumber;
+    private String backgroundUrl;
+    private String fontStyle;
+    private String signatureName;
     public void setId(Long id){
         this.id=id;
     }
