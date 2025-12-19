@@ -23,13 +23,11 @@ public class VerificationServiceImpl implements VerificationService {
 
         VerificationLog log = new VerificationLog();
 
-        log.setVerificationCode(verificationCode);
-        log.setClientIp(clientIp);
+        // only use fields that actually exist in the entity
         log.setVerifiedAt(LocalDateTime.now());
 
-        boolean isValid = verificationCode != null && !verificationCode.isBlank();
-
-        if (isValid) {
+        // FIX: enum usage (no Strings)
+        if (verificationCode != null && !verificationCode.isBlank()) {
             log.setStatus(VerificationLog.Status.VERIFIED);
         } else {
             log.setStatus(VerificationLog.Status.FAILED);
@@ -40,6 +38,7 @@ public class VerificationServiceImpl implements VerificationService {
 
     @Override
     public List<VerificationLog> getLogsByCertificate(Long certificateId) {
+
         List<VerificationLog> logs =
                 verificationLogRepository.findByCertificateId(certificateId);
 
