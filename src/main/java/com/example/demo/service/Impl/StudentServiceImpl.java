@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.Student;
-import com.example.demo.exception.DuplicateResourceException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
@@ -21,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student addStudent(Student student) {
         studentRepository.findByEmail(student.getEmail()).ifPresent(s -> {
-            throw new DuplicateResourceException("Student email exists");
+            throw new ResourceNotFoundException("Student email exists");
         });
         return studentRepository.save(student);
     }
