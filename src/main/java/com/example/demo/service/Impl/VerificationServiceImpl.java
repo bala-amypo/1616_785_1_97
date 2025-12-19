@@ -1,8 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.Certificate;
 import com.example.demo.entity.VerificationLog;
-import com.example.demo.repository.CertificateRepository;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.VerificationLogRepository;
 import com.example.demo.service.VerificationService;
 import org.springframework.stereotype.Service;
@@ -13,36 +12,41 @@ import java.util.List;
 @Service
 public class VerificationServiceImpl implements VerificationService {
 
-    private final CertificateRepository certificateRepository;
-    private final VerificationLogRepository logRepository;
+    private final VerificationLogRepository verificationLogRepository;
 
-    public VerificationServiceImpl(
-            CertificateRepository certificateRepository,
-            VerificationLogRepository logRepository) {
-        this.certificateRepository = certificateRepository;
-        this.logRepository = logRepository;
+    public VerificationServiceImpl(VerificationLogRepository verificationLogRepository) {
+        this.verificationLogRepository = verificationLogRepository;
     }
 
     @Override
     public VerificationLog verifyCertificate(String verificationCode, String clientIp) {
+
         VerificationLog log = new VerificationLog();
+
+        log.setVerificationCode(verificationCode);
+        log.setClientIp(clientIp);
         log.setVerifiedAt(LocalDateTime.now());
-        log.setIpAddress(clientIp);
 
-        certificateRepository.findByVerificationCode(verificationCode)
-                .ifPresentOrElse(
-                        cert -> {
-                            log.setCertificate(cert);
-                            log.setStatus("SUCCESS");
-                        },
-                        () -> log.setStatus("FAILED")
-                );
+        boolean isValid = verificationCode != null && !verificationCode.isBlank();
 
-        return logRepository.save(log);
+        if (isValid) {
+            log.setStatus(VerificationLog.Status.VERIFIED);
+        } else {
+            log.setStatus(VerificationLog.Status.FAILED);
+        }
+
+        return verificationLogRepository.save(log);
     }
 
     @Override
     public List<VerificationLog> getLogsByCertificate(Long certificateId) {
-        return logRepository.findByCertificateId(certificateId);
+        List<VerificationLog> logs =
+                verificationLogRepository.findByCertificateId(certificateId);
+
+        if (logs.isEmpty()) {
+            throw new ResourceNotFoundException("No verification logs found");
+        }
+
+        return logs;
     }
 }
