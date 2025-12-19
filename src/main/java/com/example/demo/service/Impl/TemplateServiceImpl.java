@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.CertificateTemplate;
-import com.example.demo.exception.DuplicateResourceException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CertificateTemplateRepository;
 import com.example.demo.service.TemplateService;
@@ -21,7 +20,7 @@ public class TemplateServiceImpl implements TemplateService {
     @Override
     public CertificateTemplate addTemplate(CertificateTemplate template) {
         repository.findByTemplateName(template.getTemplateName()).ifPresent(t -> {
-            throw new DuplicateResourceException("Template name exists");
+            throw new ResourceNotFoundException("Template name exists");
         });
         return repository.save(template);
     }
