@@ -71,6 +71,10 @@ public class VerificationLog {
     public LocalDateTime getVerifiedAt() {
         return verifiedAt;
     }
+    public void setVerifiedAt(LocalDateTime verifiedAt) {
+    this.verifiedAt = verifiedAt;
+}
+
 
     public Status getStatus() {
         return status;
