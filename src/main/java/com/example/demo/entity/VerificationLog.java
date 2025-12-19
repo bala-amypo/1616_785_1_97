@@ -30,9 +30,11 @@ public class VerificationLog {
     private String ipAddress;
 
     public enum Status {
-        SUCCESS,
-        FAILED
-    }
+    PENDING,
+    VERIFIED,
+    FAILED
+}
+
 
     public VerificationLog() {
     }
