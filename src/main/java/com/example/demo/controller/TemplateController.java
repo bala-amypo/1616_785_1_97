@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/templates")
 public class TemplateController {
 
     private final TemplateService templateService;
@@ -16,12 +15,12 @@ public class TemplateController {
         this.templateService = templateService;
     }
 
-    @PostMapping
+    @PostMapping("/templates")
     public CertificateTemplate addTemplate(@RequestBody CertificateTemplate template) {
         return templateService.addTemplate(template);
     }
 
-    @GetMapping
+    @GetMapping("/templates")
     public List<CertificateTemplate> getTemplates() {
         return templateService.getAllTemplates();
     }
