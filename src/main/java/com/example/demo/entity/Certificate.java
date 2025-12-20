@@ -1,8 +1,13 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class Certificate {
@@ -20,7 +25,7 @@ public class Certificate {
     private CertificateTemplate template;
 
     private LocalDate issuedDate;
-    private LocalDateTime createdAt;
+
     private String qrCodeUrl;
 
     @Column(unique = true, nullable = false)
@@ -29,17 +34,17 @@ public class Certificate {
     public Certificate() {
     }
 
-    public Certificate(Student student, CertificateTemplate template, LocalDate issuedDate, String qrCodeUrl, String verificationCode) {
+    public Certificate(
+            Student student,
+            CertificateTemplate template,
+            LocalDate issuedDate,
+            String qrCodeUrl,
+            String verificationCode) {
         this.student = student;
         this.template = template;
         this.issuedDate = issuedDate;
         this.qrCodeUrl = qrCodeUrl;
         this.verificationCode = verificationCode;
-    }
-
-    @PrePersist
-    public void onCreate() {
-        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -72,14 +77,6 @@ public class Certificate {
 
     public void setIssuedDate(LocalDate issuedDate) {
         this.issuedDate = issuedDate;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
     public String getQrCodeUrl() {
