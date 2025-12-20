@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -16,20 +16,12 @@ public class Certificate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(
-        name = "student_id",
-        nullable = false,
-        unique = true   
-    )
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @OneToOne
-    @JoinColumn(
-        name = "template_id",
-        nullable = false,
-        unique = true   
-    )
+    @ManyToOne
+    @JoinColumn(name = "template_id", nullable = false)
     private CertificateTemplate template;
 
     private LocalDate issuedDate;
