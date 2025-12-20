@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
 
@@ -18,8 +18,12 @@ public class VerificationLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "certificate_id", nullable = false)
+    @OneToOne
+    @JoinColumn(
+        name = "certificate_id",
+        nullable = false,
+        unique = true   
+    )
     private Certificate certificate;
 
     private LocalDateTime verifiedAt;
@@ -30,19 +34,15 @@ public class VerificationLog {
     private String ipAddress;
 
     public enum Status {
-    PENDING,
-    VERIFIED,
-    FAILED
-}
-
+        PENDING,
+        VERIFIED,
+        FAILED
+    }
 
     public VerificationLog() {
     }
 
-    public VerificationLog(
-            Certificate certificate,
-            Status status,
-            String ipAddress) {
+    public VerificationLog(Certificate certificate, Status status, String ipAddress) {
         this.certificate = certificate;
         this.status = status;
         this.ipAddress = ipAddress;
@@ -73,10 +73,10 @@ public class VerificationLog {
     public LocalDateTime getVerifiedAt() {
         return verifiedAt;
     }
-    public void setVerifiedAt(LocalDateTime verifiedAt) {
-    this.verifiedAt = verifiedAt;
-}
 
+    public void setVerifiedAt(LocalDateTime verifiedAt) {
+        this.verifiedAt = verifiedAt;
+    }
 
     public Status getStatus() {
         return status;
