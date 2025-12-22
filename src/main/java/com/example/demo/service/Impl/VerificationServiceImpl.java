@@ -23,10 +23,8 @@ public class VerificationServiceImpl implements VerificationService {
 
         VerificationLog log = new VerificationLog();
 
-        // only use fields that actually exist in the entity
         log.setVerifiedAt(LocalDateTime.now());
 
-        // FIX: enum usage (no Strings)
         if (verificationCode != null && !verificationCode.isBlank()) {
             log.setStatus(VerificationLog.Status.VERIFIED);
         } else {
