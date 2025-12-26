@@ -1,12 +1,16 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.List;
 
 @Entity
+@Table(name = "students")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
 
     @Id
@@ -15,50 +19,13 @@ public class Student {
 
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String email;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String rollNumber;
 
-    public Student() {
-    }
-
-    public Student(String name, String email, String rollNumber) {
-        this.name = name;
-        this.email = email;
-        this.rollNumber = rollNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getRollNumber() {
-        return rollNumber;
-    }
-
-    public void setRollNumber(String rollNumber) {
-        this.rollNumber = rollNumber;
-    }
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore  // <--- THIS FIXES THE LOOP ERROR
+    private List<Certificate> certificates;
 }
