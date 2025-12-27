@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VerificationLogRepository extends JpaRepository<VerificationLog, Long> {
-    // Standard CRUD operations provided by JpaRepository are sufficient for logging.
 }
