@@ -26,6 +26,6 @@ public class Student {
     private String rollNumber;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    @JsonIgnore  // <--- THIS FIXES THE LOOP ERROR
+    @JsonIgnore  
     private List<Certificate> certificates;
 }
